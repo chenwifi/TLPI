@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/time.h>
+#include <time.h>
+
+#define SECONDS_IN_TROPICAL_YEAR (365.24219 * 24 * 60 * 60)
+
+int main(){
+	time_t t;
+	struct timeval tv;
+	struct tm *gmp,*locp;
+	struct tm gm,loc;
+
+	t = time(NULL);
+	printf("Seconds since the Epoch :%ld\n",(long)t);
+	printf("in %6.3f years\n",t/SECONDS_IN_TROPICAL_YEAR);
+
+	if(gettimeofday(&tv,NULL) == -1){
+		exit(EXIT_FAILURE);
+	}
+	printf(" gettimeofday return %ld seconds ,%ld microsecs\n",(long)tv.tv_sec,(long)tv.tv_usec);
+
+	gmp = gmtime(&t);
+	if(gmp == NULL){
+		exit(EXIT_FAILURE);
+	}
+	gm = *gmp;
+	printf("Broken down by gmtime():\n");
+	printf("  year=%d mon=%d mday=%d hour=%d min=%d sec=%d ",gm.tm_year,gm.tm_mon,gm.tm_mday,gm.tm_hour,gm.tm_min,gm.tm_sec);
+	printf("wday=%d yday=%d isdst=%d\n",gm.tm_wday,gm.tm_yday,gm.tm_isdst);
+
+	locp = localtime(&t);
+	if(locp == NULL){
+		exit(EXIT_FAILURE);
+	}
+	loc = *locp;
+	printf("Broken down by localtime():\n");
+	printf("  year=%d mon=%d mday=%d hour=%d min=%d sec=%d ",loc.tm_year,loc.tm_mon,loc.tm_mday,loc.tm_hour,loc.tm_min,loc.tm_sec);
+	printf("wday=%d yday=%d isdst=%d\n",loc.tm_wday,loc.tm_yday,loc.tm_isdst);
+
+	printf("astime format : %s\n",asctime(&gm));
+	printf("ctime format : %s\n",ctime(&t));
+	
+	printf("mktime of gmtime : %ld\n",(long)mktime(&gm));
+	printf("mktime of localtime : %ld\n",(long)mktime(&loc));
+
+	return 0;
+}
