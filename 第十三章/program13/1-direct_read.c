@@ -1,0 +1,47 @@
+#define _GNU_SOURCE
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <malloc.h>
+#include <fcntl.h>
+
+int main(int argc,char *argv[]){
+	off_t offset;
+	size_t alignment,length;
+	ssize_t readNums;
+	char *buf;
+	int fd;
+
+	if(argc < 3 || strcmp("--help",argv[1]) == 0){
+		// cmd filename length [offset [alignment]]
+		exit(EXIT_FAILURE);
+	}
+
+	length = atol(argv[2]);
+	offset = (argc > 3) ? atol(argv[3]) : 0;
+	alignment = (argc > 4) ? atol(argv[4]) : 4096;
+
+	fd = open(argv[1],O_RDONLY | O_DIRECT);
+	if(fd == -1){
+		exit(EXIT_FAILURE);
+	}
+	
+	buf = (char *)memalign(2 * alignment,length + alignment) + alignment;
+	if(buf == NULL){
+		exit(EXIT_FAILURE);
+	}
+
+	if(lseek(fd,offset,SEEK_SET) == -1){
+		printf("lseek\n");
+		exit(EXIT_FAILURE);
+	}
+
+	if(readNums = read(fd,buf,length)){
+		printf("read\n");
+		exit(EXIT_FAILURE);
+	}
+
+	printf("%ld are read\n",(long)readNums);
+
+	return 0;
+}
