@@ -1,0 +1,4 @@
+1 this is a text
+2 Are you like awk
+this is a test
+10 there are orange apple 
