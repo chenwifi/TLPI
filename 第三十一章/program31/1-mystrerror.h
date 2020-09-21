@@ -1,0 +1,1 @@
+char *mystrerror(int err);
