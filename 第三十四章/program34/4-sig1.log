@@ -1,0 +1,8 @@
+PID of parent process is: 15402
+Foregroup process group ID is: 15402
+PID=15402; PGID=15402
+PID=15422; PGID=15422
+PID=15423; PGID=15402
+PID=15424; PGID=15402
+PID 15424: caught signal  1 (Hangup)
+PID 15423: caught signal  1 (Hangup)
