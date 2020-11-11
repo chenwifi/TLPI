@@ -1,0 +1,11 @@
+user	type		PID	line	id	host	date/time
+reboot   BOOT_TIME     0 ~      ~~  3.10.0-95 Wed Jan 10 04:36:14 35095810
+runlevel RUN_LVL      51 ~      ~~  3.10.0-95 Thu Nov 29 05:40:22 79838012
+root     USER_PROC  2727 tty1   tty1r           Sun Apr 17 13:53:25 32917904
+root     USER_PROC  1720 pts/0  ts/0r 192.168.5 Tue Jun 25 15:31:13 8890576
+root     USER_PROC  1745 pts/1  ts/1r 192.168.5 Fri Feb 15 03:15:42 31748515
+         DEAD_PROC  2786 pts/2  ts/2           Tue Sep 23 22:57:55 59696127
+         DEAD_PROC 30762 pts/3  ts/3           Wed Sep  7 10:57:17 36976332
+         DEAD_PROC 30825 pts/4  ts/4           Thu Aug 13 03:10:01 6653874
+         DEAD_PROC 30846 pts/5  ts/5           Mon May 27 16:21:25 51857191
+         DEAD_PROC  2585 pts/0  0             Thu Oct 29 20:58:39 2020
